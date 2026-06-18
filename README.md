@@ -30,6 +30,31 @@ node ~/.claude/skills/wx2md/scripts/convert.mjs https://mp.weixin.qq.com/s/xxxxx
 node ~/.claude/skills/wx2md/scripts/convert.mjs xxxxxx ~/Desktop/我的文章.md
 ```
 
+## 依赖的开源模块
+
+本 skill 基于以下开源模块构建（已随 `scripts/node_modules/` 一起打包），在此致谢：
+
+**直接依赖**
+
+| 模块 | 版本 | License | 用途 |
+|------|------|---------|------|
+| [turndown](https://github.com/mixmark-io/turndown) | 7.2.4 | MIT | HTML → Markdown 转换（替代 Cloudflare Workers AI） |
+| [node-html-parser](https://github.com/taoqf/node-html-parser) | 6.1.13 | MIT | 解析 HTML、隔离公众号正文 `#js_content` |
+
+**传递依赖**
+
+| 模块 | License | 来源 |
+|------|---------|------|
+| @mixmark-io/domino | BSD-2-Clause | turndown |
+| css-select / css-what / nth-check | BSD-2-Clause | node-html-parser |
+| domhandler / domutils / dom-serializer / domelementtype / entities | BSD-2-Clause | node-html-parser |
+| he | MIT | node-html-parser |
+| boolbase | ISC | node-html-parser |
+
+以上模块均采用 MIT / BSD-2-Clause / ISC 等宽松许可证。各模块版权归其原作者所有，完整许可条款见各自 `scripts/node_modules/<模块>/LICENSE`。
+
+> 此外，转换流程中的若干实现思路（懒加载图片还原、标题提取、微信图片防盗链下载、图片 URL 替换等）参考并移植自 MIT 许可的 [wx2md-worker](https://github.com/loadchange/wx2md-worker) 项目。
+
 ## 说明
 
 - 图片 Base64 内嵌会让 `.md` 偏大（图多的文章可能数 MB），换来单文件、离线可看。
