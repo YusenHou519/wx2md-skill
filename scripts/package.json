@@ -1,0 +1,14 @@
+{
+  "name": "wx2md-local",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "本地版微信公众号文章转 Markdown（零成本、纯本地、图片 Base64 内嵌）",
+  "scripts": {
+    "convert": "node convert.mjs"
+  },
+  "dependencies": {
+    "node-html-parser": "^6.1.13",
+    "turndown": "^7.2.0"
+  }
+}
